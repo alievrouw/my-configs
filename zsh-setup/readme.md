@@ -36,14 +36,16 @@ cd ~/.oh-my-zsh/themes
 ln -s ~/Git/zsh/dracula.zsh-theme dracula.zsh-theme
 ```
 
-Set Dracula as your theme in `~/.zshrc`
+Set Dracula as your theme in `~/.zshrc`. The other options I have set are detailed [here](https://github.com/dracula/zsh/blob/master/README.md).
 ```
 ZSH_THEME="dracula"
+DRACULA_DISPLAY_FULL_CWD=1
+DRACULA_DISPLAY_NEW_LINE=1
 ```
 Install [Dracula](https://draculatheme.com/iterm) iTerm theme
 
 
-## Install [`kube-ps1`](https://formulae.brew.sh/formula/kube-ps1) and [`kubectx`](https://formulae.brew.sh/formula/kubectx)
+## Install [`kube-ps1`](https://formulae.brew.sh/formula/kube-ps1) and [`kubectx`](https://formulae.brew.sh/formula/kubectx) plugins
 ```
 brew install kube-ps1 kubectx
 ```
@@ -71,6 +73,8 @@ Add in *My aliases* section of `~/.zshrc`
 alias kctx="kubectx"
 alias kns="kubens"
 ```
+Additional plugins are available [here](https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins).
+</br>
 
 ## Additional changes to ~/.zshrc
 ```
