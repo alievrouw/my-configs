@@ -1,0 +1,164 @@
+# My zsh config
+
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/adam/.oh-my-zsh"
+
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="dracula"
+
+# Dracula theme options
+DRACULA_DISPLAY_GIT=1      # Set to 0 to disable the git status
+DRACULA_DISPLAY_TIME=0     # Set to 1 to show the date
+DRACULA_DISPLAY_CONTEXT=0  # Set to 1 to show the 'context' segment
+DRACULA_ARROW_ICON="➜ "    # Changes the arrow icon
+DRACULA_DISPLAY_FULL_CWD=1 # Set to 1 to show full path of current working directory
+DRACULA_DISPLAY_NEW_LINE=1 # Set to 1 to use a new line for commands
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  git
+  kube-ps1
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# ASDF
+source /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+# Terraform (autocomplete)
+autoload -Uz compinit
+compinit
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /Users/adam/.asdf/installs/terraform/1.2.3/bin/terraform terraform
+
+# Kube-PS1 options, config descriptions here: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/kube-ps1#customization
+export KUBE_PS1_SYMBOL_ENABLE=false
+export KUBE_PS1_SUFFIX=") "
+export KUBE_PS1_CTX_COLOR="blue"
+export KUBE_PS1_NS_COLOR="green"
+export KUBE_PS1_DIVIDER=" #"
+
+# This shortens the context name displayed
+function get_cluster_short() {
+  echo "$1" | cut -d . -f1
+}
+KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
+source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
+PS1='$(kube_ps1)'$PS1
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+
+# Kubernetes aliases
+alias k='kubectl '
+alias kctx="kubectx"
+alias kns="kubens"
+alias koff="kubeoff"
+alias kon="kubeon"
+alias ksprod="export KUBECONFIG=/Users/adam/.kube/prod && kubeon"
+alias ksdev="export KUBECONFIG=/Users/adam/.kube/dev && kubeon"
+alias ksadam="export KUBECONFIG=/Users/adam/.kube/adam && kubeon"
+
+# Terraform aliases
+alias t='terraform '
+alias devPlan='AWS_PROFILE=dev terraform plan'
+alias devApply='AWS_PROFILE=dev terraform apply'
+alias devDestroy='AWS_PROFILE=dev terraform destroy'
+alias devInit='AWS_PROFILE=dev terraform init'
+alias devRefresh='AWS_PROFILE=dev terraform refresh'
+alias devCD='cd ~/Git/laitram_terraform/dev/aws'alias prodPlan='AWS_PROFILE=prod terraform plan'
+alias prodApply='AWS_PROFILE=prod terraform apply'
+alias prodDestroy='AWS_PROFILE=prod terraform destroy'
+alias prodInit='AWS_PROFILE=prod terraform init'
+alias prodRefresh='AWS_PROFILE=prod terraform refresh'
+alias prodCD='cd ~/Git/laitram_terraform/prod/aws'
+
+# Miscellaneous aliases
+alias ansibleDevConnect='ssh -i ~/.ssh/alievrou-dev ec2-user@10.200.0.4'
+alias ansibleProdConnect='ssh -i ~/.ssh/alievrou-prod ec2-user@10.199.0.4'
+alias wolframConnect='ssh -i ~/.ssh/alievrou-prod cloud@10.199.0.6'
+alias myPublicIP='wget -qO- http://ipecho.net/plain | xargs echo'
+alias ovpn='sudo openfortivpn 209.235.110.190:10443 -u alievrou --trusted-cert 901810ea93ab479419792520940d6c9db05886be0a14e4527ca2a6c847de7182 --pppd-use-peerdns=1 --no-dns'
+
+
+
+
+##########################################
+# Currently unset default .zshrc options #
+##########################################
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
+# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
