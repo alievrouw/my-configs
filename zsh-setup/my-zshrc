@@ -55,6 +55,8 @@ KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
 source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
 PS1='$(kube_ps1)'$PS1
 
+
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -72,12 +74,15 @@ alias ksadam="export KUBECONFIG=/Users/adam/.kube/adam && kubeon"
 
 # Terraform aliases
 alias t='terraform '
+
 alias devPlan='AWS_PROFILE=dev terraform plan'
 alias devApply='AWS_PROFILE=dev terraform apply'
 alias devDestroy='AWS_PROFILE=dev terraform destroy'
 alias devInit='AWS_PROFILE=dev terraform init'
 alias devRefresh='AWS_PROFILE=dev terraform refresh'
-alias devCD='cd ~/Git/laitram_terraform/dev/aws'alias prodPlan='AWS_PROFILE=prod terraform plan'
+alias devCD='cd ~/Git/laitram_terraform/dev/aws'
+
+alias prodPlan='AWS_PROFILE=prod terraform plan'
 alias prodApply='AWS_PROFILE=prod terraform apply'
 alias prodDestroy='AWS_PROFILE=prod terraform destroy'
 alias prodInit='AWS_PROFILE=prod terraform init'
@@ -90,7 +95,6 @@ alias ansibleProdConnect='ssh -i ~/.ssh/alievrou-prod ec2-user@10.199.0.4'
 alias wolframConnect='ssh -i ~/.ssh/alievrou-prod cloud@10.199.0.6'
 alias myPublicIP='wget -qO- http://ipecho.net/plain | xargs echo'
 alias ovpn='sudo openfortivpn 209.235.110.190:10443 -u alievrou --trusted-cert 901810ea93ab479419792520940d6c9db05886be0a14e4527ca2a6c847de7182 --pppd-use-peerdns=1 --no-dns'
-
 
 
 
