@@ -10,9 +10,9 @@ ZSH_THEME="dracula"
 DRACULA_DISPLAY_GIT=1      # Set to 0 to disable the git status
 DRACULA_DISPLAY_TIME=0     # Set to 1 to show the date
 DRACULA_DISPLAY_CONTEXT=0  # Set to 1 to show the 'context' segment
-DRACULA_ARROW_ICON="➜ "    # Changes the arrow icon
-DRACULA_DISPLAY_FULL_CWD=1 # Set to 1 to show full path of current working directory
-DRACULA_DISPLAY_NEW_LINE=1 # Set to 1 to use a new line for commands
+DRACULA_ARROW_ICON="➜  "    # Changes the arrow icon
+DRACULA_DISPLAY_FULL_CWD=0 # Set to 1 to show full path of current working directory
+DRACULA_DISPLAY_NEW_LINE=0 # Set to 1 to use a new line for commands
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
