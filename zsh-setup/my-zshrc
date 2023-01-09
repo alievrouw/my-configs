@@ -71,6 +71,7 @@ alias kon="kubeon"
 alias ksprod="export KUBECONFIG=/Users/adam/.kube/prod && kubeon"
 alias ksdev="export KUBECONFIG=/Users/adam/.kube/dev && kubeon"
 alias ksadam="export KUBECONFIG=/Users/adam/.kube/adam && kubeon"
+alias ksminikube="export KUBECONFIG=/Users/adam/.kube/minikube && kubeon"
 
 # Terraform aliases
 alias t='terraform '
